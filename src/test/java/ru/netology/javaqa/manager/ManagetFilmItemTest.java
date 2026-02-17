@@ -1,6 +1,6 @@
 package ru.netology.javaqa.manager;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
 public class ManagetFilmItemTest {
@@ -73,6 +73,19 @@ public class ManagetFilmItemTest {
         manager.addFilms("Человек-невидимка");
 
         String[] expected = {"Человек-невидимка", "Джентельмены", "Отель Белград"};
+        String[] actual = manager.findLastFilms();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldLastFilmsDownLimit() {
+        ManagerFilmItem manager = new ManagerFilmItem(3);
+
+        manager.addFilms("Джентельмены");
+        manager.addFilms("Человек-невидимка");
+
+        String[] expected = {"Человек-невидимка", "Джентельмены"};
         String[] actual = manager.findLastFilms();
 
         Assertions.assertArrayEquals(expected, actual);
